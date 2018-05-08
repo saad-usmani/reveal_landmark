@@ -34,33 +34,109 @@
 						<section data-markdown>
 								<textarea data-template>
 								### The Data
+
+								- Around 6,000 papers
+								- From January 2018
+								- Range of subjects
 								</textarea>
 							</section>
-						<section data-markdown>
+							<section data-markdown>
 								<textarea data-template>
-								### Scraping relevant Information
+								### Goal: Create new abstracts from our dataset
+								- Use a markov text generation model trained on the abstracts
+								- Create a series of new abstracts
+								- Determine if people can tell the difference between real and fake 
 								</textarea>
 						</section>
 						<section data-markdown>
+							<textarea data-template>
+							### Markov Text Generator Explanation
+							- What words most likely come after this other word? 
+							</textarea>
+					</section>
+						<section data-markdown>
 								<textarea data-template>
-								### Need subject for more specific types of papers
-								- Go online and scrape it 
+								### Use spark to pull
 
+								Use spark to: 
+								1. Titles 
+								2. Abstracts
+								</textarea>
+						</section>
+						<section data-markdown>
+							<textarea data-template>
+							### Per-Subject Generators?
+
+							- Subject not available in raw documents
+							- Might make abstracts more convincing if they're trained in groups based on subject
+							</textarea>
+					</section>
+					<section data-markdown>
+						<textarea data-template>
+						### The Arxiv website has the subject!
+
+						![](image/subject_css.png)
+
+						</textarea>
+				</section>
+						<section data-markdown>
+								<textarea data-template>
+
+						![](image/go_get_it.gif)
+						
 								</textarea>
 						</section>
 						<section data-markdown>
 								<textarea data-template>
-								### How does Markov work
+						- The url is actually determined by the ID in the filenames.
+						- Instead of 1801_10602 it's 1801.10602
 								</textarea>
 						</section>
 						<section data-markdown>
 								<textarea data-template>
-								### Our results
+						- What subjects would most likely work out? (Which have high sample size)
+						- TODO: INSERT BAR GRAPH SHOWING DISTRIBUTION OF SUBJECTS
 								</textarea>
 						</section>
 						<section data-markdown>
 								<textarea data-template>
-								### Hopefully we made people guess whether we could fool them or not, idk
+						- TODO: Insert 3-5 subjects we decided to use, and their counts
+								</textarea>
+						</section>
+						<section data-markdown>
+								<textarea data-template>
+								### Show example markov generated doc 
+								</textarea>
+						</section>
+						<section data-markdown>
+								<textarea data-template>
+								### But how'd we do?
+								- Created surveymonkey polling students to determine which paper was real 
+								- [INSERT NUMBER OF PEOPLE] participated
+								</textarea>
+						</section>
+						<section data-markdown>
+								<textarea data-template>
+									[TODO: INSERT SCREENSHOT OF SURVEYMONKEY]
+								</textarea>
+						</section>
+						<section data-markdown>
+								<textarea data-template>
+									Display results here textually
+									include graphic
+								</textarea>
+						</section>
+						<section data-markdown>
+								<textarea data-template>
+								### Takeaways about how we might extend the work
+
+								For example: Are papers getting harder to differentiate from technobabble as they become more specialized?
+								We'd need older data for that. 
+								</textarea>
+						</section>
+						<section data-markdown>
+								<textarea data-template>
+										![](image/go_home.gif)		
 								</textarea>
 						</section>
 			</div>
