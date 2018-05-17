@@ -4,7 +4,7 @@
 		<meta charset="utf-8">
 		<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
 
-		<title>Sparkov Generator</title>
+		<title>Landmarks</title>
 
 		<link rel="stylesheet" href="css/reveal.css">
 		<link rel="stylesheet" href="css/theme/night.css">
@@ -26,191 +26,634 @@
 			<div class="slides">
 					<section data-markdown>
 							<textarea data-template>
-							### Sparkov Generator Models
+							### Landmarks
 
-							##### Making up abstracts with Arxiv and Spark
+							##### Saad and Beau
 							</textarea>
 						</section>
 						<section data-markdown>
 								<textarea data-template>
-								### The Data
+								### Overview from last time
 
-								- Around 10,000 papers
-								- From January 2018
-								- Large range of subjects 
-								- Ignore PDFs entirely
+								- Split into two landmarks
+								- Pantheon
+								- Rialto Bridge
+								<aside class="notes">
+						SAAD
+
+						Pretty simple. Only two landmarks. Only a couple convolutional layers.  </aside>	
 								</textarea>
 							</section>
 							<section data-markdown>
 								<textarea data-template>
-								### Goal: Generate new abstracts from our dataset
-								- Use a markov text generation model trained on the abstracts
-								- Create a series of new abstracts
-								- Determine if people can tell the difference between real and fake 
+								### Previous Architecture
+
+								![](image/pre.png)
+								<aside class="notes">
+						SAAD </aside>	
 								</textarea>
 						</section>
 						<section data-markdown>
 							<textarea data-template>
-							### Markov Text Generator Explanation
-							- What words most likely come after this other word? 
+							### Outcome
+
+							 - Accuracy: 0.80077355
+							 - Loss: 0.438
+							 - Global Step:  337
+							 - Accuracy is still increasing per step
+
+							 <aside class="notes">
+						SAAD
+
+						Still in initial stages but 80 percent for two is bad.  </aside>	
+
 							</textarea>
 					</section>
-						<section data-markdown>
+						<section data-transition="slide" data-markdown data-background = "red">
 								<textarea data-template>
-								### Use spark to pull
-
-								1. Titles 
-								2. Abstracts
-
-								- Turns out there are nice libraries for pulling out LaTex fields
+							### So, what's new?
 								</textarea>
 						</section>
 						<section data-markdown>
 							<textarea data-template>
-							### Per-Subject Generators?
-							Pros:
-							- Might make abstracts more convincing if they're trained in groups based on subject
+							### What's new?
 
-							Con:
-							- Subject not given
+							- New landmarks
+							- New architecture (transfer learning - mobilenet and InceptionV3)
+							- Data augmentation (brightness, scale)
+							- Adjusting learning rate and batch size
+							- Comparing results
+
+							<aside class="notes">
+						BEAU  </aside>	
+
 							</textarea>
 					</section>
 					<section data-markdown>
 						<textarea data-template>
-						### The Arxiv website has the subject!
+						### New Landmarks
 
-						![](image/subject_css.png)
+						- Subsampled 20,000 images of landmarks. These were the top 5:
+
+						<aside class="notes">
+						BEAU
+
+						Our approach rather than to train on all of it, was to subsample a portion of the data and take the top landmarks from that sample (assuming proportional to population) and use transfer learning approach because it requires less data. </aside>	
 
 						</textarea>
 				</section>
 						<section data-markdown>
 								<textarea data-template>
+						Wallis Tower
 
-						![](image/go_get_it.gif)
+						![](image/wallis.jpg)
 						
 								</textarea>
 						</section>
 						<section data-markdown>
 								<textarea data-template>
-						- The url is actually determined by the ID in the filenames.
-						- Instead of 1801_10602 it's 1801.10602
-						- Soft-blocked every 1000 requests for 24 hours
-						- Would've used proxies but then I would've felt more like I was violating the ToS
-								</textarea>
-						</section>
-						<section data-markdown>
-								<textarea data-template>
-						- Subjects were chosen based on a combination of
+						Colosseum
 
-							1. Interest (want a variety of subjects) 
-							2. Count (want a plausible sample size for generators)
-								</textarea>
-						</section>
-						<section data-markdown>
-								<textarea data-template>
-						![](image/subject_distribution.jpeg)
-								</textarea>
-						</section>
-						<section data-markdown>
-								<textarea data-template>
-						Ended up moving forward with:
-
-						1. Cryptography and Security
-						2. Distributed Computing
-						3. High Energy Physics
-						4. Machine Learning
-						5. Numerical Analysis
-								</textarea>
-						</section>
-						<section data-markdown>
-								<textarea data-template>
-								![](image/crypto_fake.PNG)		
+						![](image/col.jpg)
 
 								</textarea>
 						</section>
 						<section data-markdown>
 								<textarea data-template>
-								### How do you test success of a markov model?
-								- Created google forms asking participants to determine which paper was real 
-								- 106 participated over 3 days
+						St. Pete's Basilica
+
+						![](image/basilica.jpg)
+
 								</textarea>
 						</section>
 						<section data-markdown>
 								<textarea data-template>
-								### Matt, ROBOT challenges you to a D-D-D-DUEL!
-								- <a href="https://goo.gl/forms/3C9iMjUFwfniYT4K2">TAKE THE QUIZ</a>
+						Charles Bridge
+
+						![](image/bridge.jpg)
+
+								</textarea>
+						</section>
+						<section data-markdown>
+								<textarea data-template>
+						Alhambra Palace
+
+						![](image/ala.jpg)
+
+								</textarea>
+						</section>
+						<section data-markdown>
+								<textarea data-template>
+								### New Architecture
+								- MobileNet
+								- InceptionV3
+
+								<aside class="notes">
+						SAAD  </aside>	
+								</textarea>
+						</section>
+						<section data-markdown>
+								<textarea data-template>
+								### MobileNet
+
+								<aside class="notes">
+						BEAU The first net we are going to discuss. </aside>
+								
+								</textarea>
+						</section>
+						<section data-markdown>
+								<textarea data-template>
+								### MobileNet
+								- Uses depthwise separable convolutions
+								- Depthwise separable convolutions similar to regular convolutions. 
+								- Requires less computation and is more efficient
+
+								<aside class="notes">
+						BEAU  </aside>	
+
 								</textarea>
 						</section>
 
 						<section data-markdown>
 								<textarea data-template>
-										![](image/the_survey.png)		
+							### Regular Convolution
+
+							![](image/regular.png)
+
+							<aside class="notes">
+						SAAD A regular convolutional layer applies a convolution kernel (or “filter”) to all of the channels of the input image. It slides this kernel across the image and at each step performs a weighted sum of the input pixels covered by the kernel across all input channels. the convolution writes a new output pixel with only a single channel.  </aside>		
 									</textarea>
 						</section>
 						<section data-markdown>
 								<textarea data-template>
-									![](image/reactions.PNG)
+							### Depth-wise Separable Convolution
+
+							- Depth-wise convolution
+							![](image/depth1.PNG)
+							<aside class="notes">
+						SAAD Unlike a regular convolution it does not combine the input channels but it performs convolution on each channel separately. For an image with 3 channels, a depthwise convolution creates an output image that also has 3 channels. Each channel gets its own set of weights.  </aside>	
+									</textarea>
+						</section>
+						<section data-markdown>
+								<textarea data-template>
+							### Depth-wise Separable Convolution
+
+							- Point-wise convolution
+							![](image/depth2.PNG)
+							<aside class="notes">
+						SAAD In other words, this simply adds up all the channels (as a weighted sum). As with a regular convolution, we usually stack together many of these pointwise kernels to create an output image with many channels. The purpose of this pointwise convolution is to combine the output channels of the depthwise convolution to create new features.  </aside> 
+									</textarea>
+						</section>
+						<section data-markdown>
+								<textarea data-template>
+									### Add those two together to get depth-wise separable convolutions. 
+									The end results of both approaches are pretty similar — they both filter the data and make new features — but a regular convolution has to do much more computational work to get there and needs to learn more weights.
+									<aside class="notes">
+						SAAD  </aside>	
+								</textarea>
+						</section>
+
+						<section data-markdown>
+								<textarea data-template>
+									![](image/regconv.PNG)
+									![](image/depthconv.PNG)
+									<aside class="notes">
+						BEAU The main idea is that the addition between two steps yields less than the multiplication in the regular convolution.  </aside> 
+								</textarea>
+						</section>
+
+						<section data-markdown>
+								<textarea data-template>
+									![](image/depthconv2.PNG)
+									<aside class="notes">
+						SAAD Here, we can clearly see that the regular convolution performs about 9X worse than the depth-separable convolution.  </aside> 
+								</textarea>
+						</section>
+
+						<section data-markdown>
+								<textarea data-template>
+
+									### MobileNet Network
+
+									The full MobileNets network has 30 layers. The design of the network is quite straightforward:
+
+									![](image/mobilenet.png)
+
+									<aside class="notes">
+						BEAU  </aside>	
+
+						</textarea> </section>
+
+						<section data-markdown>
+								<textarea data-template>
+									<ol>
+										<li> 3X3 convolution as first layer, followed by 13 times shown image. </li>
+										<li> Typically, average pooling layer at very end followed by FC classification layer (or 1X1 conv) and softmax </li>
+									</ol>
+
+									<aside class="notes">
+						BEAU  </aside>	
+								</textarea>
+						</section>
+
+						<section data-markdown>
+								<textarea data-template>
+									### More MobileNet
+									- No pooling layers in between depth-wise blocks
+									- Instead, some depthwise layers have stride 2
+									- Reduces spatial dimensions. Pointwise layers, then increases output channels. 
+									- Convolution layers followed by batch norm
+									- Uses RELU activation. 
+									- Using depthwise separable, mobilenet does 9X less work than comparable neural nets (w/ same accuracy).
+									- Total # of parameters: 4,221,032. 
+
+									<aside class="notes">
+						SAAD (BEAU STRIDES)  </aside>	
 								</textarea>
 						</section>
 						<section data-markdown>
 								<textarea data-template>
-									![](image/distribution.PNG)
+									### MobileNet Results
+									- Retrained MobileNet with our images (transfer learning) 
+									- Final Test Accuracy (after 1000 steps): 89.4%
+
+									<aside class="notes">
+						SAAD  </aside>	
 								</textarea>
 						</section>
 						<section data-markdown>
 								<textarea data-template>
-									![](image/Rplot02.png)
+									![](image/accuracy.png)
+									<aside class="notes">
+						BEAU  </aside>	
 								</textarea>
 						</section>
 						<section data-markdown>
 								<textarea data-template>
-									![](image/Rplot.png)
+									![](image/loss_mobile.png)
+									<aside class="notes">
+						BEAU  </aside>	
 								</textarea>
 						</section>
+
+						<section data-markdown>
+					<textarea data-template>
+
+					### Data Augmentation
+
+					- Flip_left_right: Randomly flip half of the training images horizontally.
+					- Random_scale: Randomly scaled up by 10%
+					- Random brightness: Randomly multiplyed input pixels up and down by 5%.
+					- Random_crop: Randomly crop off 5% of images. 
+					- Effectively creates "new" data from distortions
+					- The biggest disadvantage is that the bottleneck caching is no longer useful, since input images are never reused exactly. 
+					
+
+					<aside class="notes">
+						BEAU  </aside>	
+					
+					</textarea>
+			</section>
+
+			<section data-markdown>
+					<textarea data-template>
+
+					### Data Augmentation Results
+
+					- Accuracy: 90.8%
+
+					![](image/augmentation.png)
+
+					<aside class="notes">
+						BEAU  </aside>	
+
+					
+					</textarea>
+			</section>
+
+
 						<section data-markdown>
 								<textarea data-template>
-									![](image/Rplot01.png)
-								</textarea>
-						</section>
-						<section data-markdown>
-								<textarea data-template>
-								## Takeaways
+								### InceptionV3
+								<aside class = "notes">
+					SAAD MobileNet optimized for speed, but wanted to try InceptionV3 for better accuracy.  </aside>
 								</textarea>
 						</section>
 						<section data-markdown>
 							<textarea data-template>
-							### Decade-based Models
+							### It's a more complex model
 
-							- Make one model per each decade 
-							- Seperate quizzes made of real and generated abstracts over the years
-							- Does it get harder distinguish technobabble from legitimate as fields become more specialized?
+							- What is an inception module?
+							- Acts as multiple convolution filters at the same time, applied to the same input (then concatenated)
+							- Multi-level feature extraction
+							- InceptionV3 is a collection of stacked inception modules. 
+							<aside class="notes">
+						SAAD  </aside>	
 							</textarea>
 					</section>	
 					<section data-markdown>
 						<textarea data-template>
-						### Make a GAN
-
-						- Some kind of adversarial model, one trying to determine if a paper is legitimate or not
-						- The other trying to make progressively better papers
-						- "Test" every once in a while by creating a survey and seeing how people do on it 
-						- Goal of making results no better than random chance guess. 
+						![](image/naive.png)
+						<aside class="notes">
+						SAAD Dimensions are increasing with naïve module. Lots of computation. Based on channels of input (256). </aside>
 						</textarea>
+						
 				</section>	
 				<section data-markdown>
 					<textarea data-template>
-					### All of this requires 
-
-					- More data
-					- Potentially more processing power
-
-					![](image/unlimited.gif)		
+					![](image/naive2.png)
+					<aside class="notes">
+					BEAU </aside>	
 					</textarea>
-			</section>						
-						<section data-markdown>
-								<textarea data-template>
-										![](image/go_home.gif)		
-								</textarea>
-						</section>
+			</section>		
+			<section data-markdown>
+					<textarea data-template>
+					![](image/naive3.png)
+					<aside class = "notes">
+					BEAU Adds 1X1 convolutions, reduced dimensions of your input which in turn leads to less computation. Also leads to less dimensions (channels) in output. </aside>
+					</textarea>
+					
+			</section>	<section data-markdown>
+					<textarea data-template>
+					![](image/naive4.png)
+					<aside class="notes">
+					BEAU  </aside>	
+					</textarea>
+			</section>	
+
+			<section data-markdown>
+					<textarea data-template>
+					### Reminder: Regular Convolution with one difference
+
+
+					![](image/regular.png)
+					<aside class="notes">
+		SAAD As shown in 1X1 convolution, pertains to output channels of previous layer rather than RGB. 
+	</aside>
+					</textarea>
+			</section>
+
+			<section data-markdown>
+					<textarea data-template>
+					![](image/inception_model.png)
+					<aside class="notes">
+		SAAD Normal network: convolution, pooling, normalization, convolutional 2X, normalization, pooling
+
+		BEAU MODULES
+	</aside>
+					</textarea>
+			</section>	
+
+			<section data-markdown>
+					<textarea data-template>
+					![](image/inception_model2.png)
+
+					<aside class="notes">
+		SAAD	Final network: Concatenate, pooling, convolutional/FC, softmax
+
+		BEAU BACK PROP
+	</aside>
+					</textarea>
+			</section>
+
+			<section data-markdown>
+					<textarea data-template>
+					### Results
+
+					- For 1000 steps, get accuracy of: 94%
+					![](image/inception2.png)
+					![](image/inception1.png)
+					<aside class="notes">
+						SAAD  </aside>	
+					</textarea>
+			</section>			
+			<section data-markdown>
+					<textarea data-template>
+						### Comparison
+						We have results for MobileNet and InceptionV3, but which one should we use?
+
+						![](image/comparison.PNG)
+
+						<aside class="notes">
+						BEAU  </aside>	
+
+					</textarea>
+			</section>
+
+			<section data-markdown>
+				<textarea data-template>
+				![](image/time.png)
+
+
+				<aside class="notes">
+						Pretty simple. Only two landmarks. Only a couple convolutional layers.  </aside>	
+			</textarea>
+			</section>
+
+
+			<section data-markdown>
+					<textarea data-template>
+
+					- After seeing 1000 steps, training accuracy was still increasing. 
+					- Wanted to try more steps. 
+					- With 4000 steps, train accuracy got to 100%.
+					- Test accuracy for to 94.9%. 
+					- Try lower learning rate? See if accuracy increases. 
+
+					<aside class="notes">
+						SAAD  </aside>	
+					
+					</textarea>
+			</section>
+
+			<section data-markdown>
+					<textarea data-template>
+
+					Trying learning rate = 0.005
+
+					- Test accuracy = 95.4%
+
+					![](image/batch_reborn.PNG)
+					![](image/learning_rate2.PNG)
+
+					<aside class="notes">
+						SAAD  </aside>	
+
+					
+					</textarea>
+			</section>
+
+			<section data-markdown>
+					<textarea data-template>
+
+					### More Data
+
+					- Will adding more data improve our validation accuracy? 
+					- We subsampled for 200,000 images of landmarks, then filtered for the five previous landmarks used. 
+					- We then retrained InceptionV3 using this added data.
+
+					<aside class="notes">
+						SAAD  </aside>	
+					
+					</textarea>
+			</section>
+
+			<section data-markdown>
+					<textarea data-template>
+
+					### More Results
+
+					- We now are running with 4,000 steps on our new data.
+					- It took forever to create the bottleneck files. 
+					- It took forever to train the data.
+
+					<aside class="notes">
+						SAAD  </aside>	
+					
+					</textarea>
+			</section>
+
+			<section data-markdown>
+					<textarea data-template>
+
+					![](image/bigdata1.png)
+					![](image/bigdata2.png)
+
+					<aside class="notes">
+						SAAD Training was kinda all over the place - jumping up and down. We want to implement some learning decay to help stop that.   </aside> 
+					
+					</textarea>
+			</section>
+
+			<section data-markdown>
+					<textarea data-template>
+
+					### Batch Size
+
+					![](image/batch.png)
+
+					- "Decaying the learning rate and increasing the batch size during training are equivalent" (according to these dudes)
+					- Let's test this with a batch size of 300. 
+
+					<aside class="notes">
+						BEAU  </aside>	
+					</textarea>
+			</section>
+
+			<section data-markdown>
+					<textarea data-template>
+
+					### Batch Size Results
+
+					- Accuracy: 92% :(
+					- But, we did see less jumping around during training. 
+					
+					<aside class="notes">
+						BEAU  </aside>	
+					</textarea>
+			</section>
+
+			<section data-markdown>
+				<textarea data-template>
+				![](image/batch_fail.png)
+				![](image/bigdata1.png)
+
+				<aside class="notes">
+						BEAU  </aside>	
+			</textarea>
+			</section>
+
+
+<section data-markdown>
+					<textarea data-template>
+
+					### Misclassification Examples
+
+					- Misclassified as: St. Peter's Basilica
+
+					![](image/col1.jpg)
+					![](image/lastone.png)
+
+					<aside class="notes">
+						SAAD </aside>	
+
+					
+					</textarea>
+			</section>
+
+			<section data-markdown>
+					<textarea data-template>
+
+					### Misclassification Examples
+
+					- Misclassified as: St. Peter's Basilica
+
+					![](image/col2.jpg)
+					![](image/stpeteresult.png)
+
+					<aside class="notes">
+						SAAD </aside>	
+
+					
+					</textarea>
+			</section>
+
+<section data-markdown>
+					<textarea data-template>
+
+					### Misclassification Examples
+
+					- Misclassified as: Charles Bridge
+
+					![](image/col3.jpg)
+					![](image/charles_results.png)
+
+					<aside class="notes">
+						SAAD </aside>	
+
+					
+					</textarea>
+			</section>
+
+
+			
+
+			<section data-markdown>
+					<textarea data-template>
+
+					### Takeaways
+
+					- Amount of time taken: Inception was longer. 
+					- Accuracy vs Speed
+					- MobileNet training seemed went to 100% faster (test wasn't as good)
+					- Lower learning rate and larger batch size ideally would give smoother accuracy curve. 
+					- Data Augmentation seemed to smooth it as well (on MobileNet)
+
+					<aside class="notes">
+						SAAD  </aside>	
+					
+					</textarea>
+			</section>
+
+			<section data-markdown>
+					<textarea data-template>
+
+					### Takeaways
+
+					![](image/summary.PNG)
+
+					<aside class="notes">
+						SAAD  </aside>	
+					
+					</textarea>
+			</section>
+
+
+
+
+
+
+
 			</div>
 		</div>
 
